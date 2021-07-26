@@ -114,18 +114,17 @@ impl<C: Curve> Mul<BigInt> for Point<C> {
 
     fn mul(self, mut other: BigInt) -> Point<C> {
         assert!(other >= BigInt::zero());
-
-        if other == BigInt::zero() {
-            Self::infinity()
-        } else {
-            let mut ret = self.clone();
-            other -= BigInt::one();
-            while other > BigInt::zero() {
-                ret = ret + self.clone();
-                other -= BigInt::one();
+        let mut n = other.clone();
+        let mut k: Point<EC> = Point::infinity();
+        let mut a = g.clone();
+        while &n != &BigInt::zero() {
+            if &n % 2 == BigInt::one() {
+                ret = ret + g.clone();
             }
-            ret
+            a = a.clone() + a.clone();
+            n /= 2;
         }
+        ret
     }
 }
 
