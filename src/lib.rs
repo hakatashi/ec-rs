@@ -9,7 +9,7 @@ use core::marker::PhantomData;
 use core::fmt::Debug;
 
 /// A point value.
-#[derive(Clone, Eq, PartialEq, Debug)]
+#[derive(Clone, Eq, PartialEq, Debug, Hash)]
 pub enum PointValue {
     Infinity,
     Value {
