@@ -14,8 +14,6 @@ pub fn inverse_mod(mut a: BigInt, m: BigInt) -> BigInt {
         d = c;
         c = r;
 
-        println!("{}, {}, {}", q, c, d);
-
         let (nuc, nvc, nud, nvd) = (
             &ud - &q * &uc,
             &vd - &q * &vc,
@@ -27,7 +25,6 @@ pub fn inverse_mod(mut a: BigInt, m: BigInt) -> BigInt {
         vc = nvc;
         ud = nud;
         vd = nvd;
-        println!("{}, {}, {}, {}", uc, vc, ud, vd);
     }
 
     assert_eq!(d, BigInt::one());
